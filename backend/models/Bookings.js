@@ -14,11 +14,7 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
 
-    date: {
-      type: Date,
-      required: true,
-    },
-
+    // Full datetime (recommended)
     startTime: {
       type: Date,
       required: true,
@@ -31,6 +27,7 @@ const bookingSchema = new mongoose.Schema(
 
     purpose: {
       type: String,
+      trim: true,
     },
 
     status: {
@@ -41,5 +38,8 @@ const bookingSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// 🔥 Index for faster conflict queries
+bookingSchema.index({ resource: 1, startTime: 1, endTime: 1 });
 
 module.exports = mongoose.model("Booking", bookingSchema);
