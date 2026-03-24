@@ -54,4 +54,48 @@ let createBooking = async (req, res) => {
   }
 };
 
-module.exports = { createBooking };
+let getBookings = async(req,res)=>{
+  try{
+    const bookings=await Bookings.find()
+    res.json(bookings)
+  }
+  catch{
+    res.json({"msg":"Error fetching bookings"})
+  }
+}
+
+let getBooking = async(req,res)=>{
+  try{
+    const booking=await Bookings.findById(req.params.id)
+    console.log(booking)
+
+    if(!booking){
+      res.json({"msg":"Booking not found"})
+    }
+    else{
+      res.json(booking)
+    }
+  }
+  catch{
+    res.json({"msg":"Error in fetching the booking"})
+  }
+}
+
+let cancelBooking = async(req,res)=>{
+  try{
+    const booking = await Bookings.findById(req.params.id)
+    if (!booking){
+      res.json({"msg":"Booking not found"})
+    }
+    else{
+      booking.status="cancelled"
+      await booking.save()
+      res.json({"msg":"Booking cancelled"},booking)
+    }
+  }
+  catch{
+    res.json({"msg":"Error in cancelling"})
+  }
+}
+
+module.exports = { createBooking , getBookings, getBooking, cancelBooking};

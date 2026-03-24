@@ -1,7 +1,7 @@
 let express = require("express");
 const { signup, login, sendotp, resetpassword } = require("../controllers/authController");
 const {createResources, getResources, getResource, updateResources, deleteResource} = require("../controllers/resourceController");
-const { createBooking } = require("../controllers/bookingController");
+const { createBooking, getBookings, getBooking, cancelBooking } = require("../controllers/bookingController");
 let rt = new express.Router();
 
 rt.post("/signup", signup);
@@ -16,6 +16,11 @@ rt.put("/updateresources/:id",updateResources)
 rt.delete("/deleteresource/:id",deleteResource)
 
 rt.post("/createbooking",createBooking)
+rt.get("/getbookings",getBookings)
+rt.get("/getbooking/:id",getBooking)
+rt.put("/cancelbooking/:id",cancelBooking)
+
+
 
 
 
