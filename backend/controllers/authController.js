@@ -148,4 +148,14 @@ let resetpassword = async (req, res) => {
   }
 };
 
-module.exports = { signup, login, sendotp, resetpassword };
+let getusername=async(req,res)=>{
+  try{
+    let user = await userModel.findById(req.params.id)
+    let  name=user.name
+    res.json(name)    
+  }
+  catch{
+    res.json({"msg":"error in getting username"})
+  }
+}
+module.exports = { signup, login, sendotp, resetpassword, getusername};

@@ -51,4 +51,16 @@ let deleteResource = async (req,res)=>{
         res.json({"msg":"error in deleting"})
     }
 }
-module.exports = { createResources, getResources, getResource , updateResources, deleteResource};
+
+let getresourcename=async(req,res)=>{
+  try{
+    let resource = await Resources.findById(req.params.id)
+    let  name=resource.name
+    console.log(resource)
+    res.json(name)    
+  }
+  catch{
+    res.json({"msg":"error in getting resource name"})
+  }
+}
+module.exports = { createResources, getResources, getResource , updateResources, deleteResource, getresourcename};
