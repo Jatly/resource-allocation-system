@@ -150,8 +150,7 @@ let resetpassword = async (req, res) => {
 
 let getusername=async(req,res)=>{
   try{
-    let user = await userModel.findById(req.params.id)
-    let  name=user.name
+    let user = await userModel.findById(req.params.id).select("name")
     res.json(name)    
   }
   catch{

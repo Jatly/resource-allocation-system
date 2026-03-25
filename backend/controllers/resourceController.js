@@ -54,10 +54,8 @@ let deleteResource = async (req,res)=>{
 
 let getresourcename=async(req,res)=>{
   try{
-    let resource = await Resources.findById(req.params.id)
-    let  name=resource.name
-    console.log(resource)
-    res.json(name)    
+    let resource = await Resources.findById(req.params.id).select("name")
+    res.json(resource)    
   }
   catch{
     res.json({"msg":"error in getting resource name"})
