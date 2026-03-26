@@ -1,6 +1,27 @@
 const Resources = require("../models/Resources");
 const Bookings = require("../models/Bookings");
 
+const nodemailer = require("nodemailer");
+
+const sendEmail = async (to, subject, text) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS, // app password
+    },
+  });
+
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to,
+    subject,
+    text,
+  });
+};
+
+module.exports = sendEmail;
+
 let createBooking = async (req, res) => {
   try {
     const { resource, startTime, endTime, purpose, user } = req.body;
@@ -54,48 +75,91 @@ let createBooking = async (req, res) => {
   }
 };
 
-let getBookings = async(req,res)=>{
-  try{
-    const bookings=await Bookings.find()
-    res.json(bookings)
+let getBookings = async (req, res) => {
+  try {
+    const bookings = await Bookings.find();
+    res.json(bookings);
+  } catch {
+    res.json({ msg: "Error fetching bookings" });
   }
-  catch{
-    res.json({"msg":"Error fetching bookings"})
-  }
-}
+};
 
-let getBooking = async(req,res)=>{
-  try{
-    const booking=await Bookings.findById(req.params.id)
-    console.log(booking)
+let getBooking = async (req, res) => {
+  try {
+    const booking = await Bookings.findById(req.params.id);
+    console.log(booking);
 
-    if(!booking){
-      res.json({"msg":"Booking not found"})
+    if (!booking) {
+      res.json({ msg: "Booking not found" });
+    } else {
+      res.json(booking);
     }
-    else{
-      res.json(booking)
-    }
+  } catch {
+    res.json({ msg: "Error in fetching the booking" });
   }
-  catch{
-    res.json({"msg":"Error in fetching the booking"})
-  }
-}
+};
 
-let cancelBooking = async(req,res)=>{
-  try{
-    const booking = await Bookings.findById(req.params.id)
-    if (!booking){
-      res.json({"msg":"Booking not found"})
-    }
-    else{
-      booking.status="cancelled"
-      await booking.save()
-      res.json({"msg":"Booking cancelled"},booking)
-    }
-  }
-  catch{
-    res.json({"msg":"Error in cancelling"})
-  }
-}
+let cancelBooking = async (req, res) => {
+  try {
+    //  populate userModel (IMPORTANT)
+    const booking = await Bookings.findById(req.params.id).populate(
+      "user",
+      "name email",
+    );
 
-module.exports = { createBooking , getBookings, getBooking, cancelBooking};
+    // 1. Check booking
+    if (!booking) {
+      return res.status(404).json({
+        success: false,
+        msg: "Booking not found",
+      });
+    }
+
+    //  Check status
+    if (booking.status == "cancelled") {
+      return res.json({
+        msg: "Booking already cancelled",
+      });
+    }
+
+    // 2. Cancel booking
+    booking.status = "cancelled";
+    await booking.save();
+
+    // 3. Send email 📧
+    const message = `
+Hi ${booking.user.name},
+
+Due to an emergency, your booking has been cancelled.
+
+You can:
+• Reschedule for a different time
+• Choose another meeting room
+
+Sorry for the inconvenience.
+
+Regards,
+Office Team
+`;
+
+    await sendEmail(booking.user.email, "Booking Cancelled", message);
+
+    // 4. Response
+    res.status(200).json({
+      success: true,
+      msg: "Booking cancelled and email sent",
+      booking,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      msg: "Error in cancelling booking",
+    });
+  }
+};
+
+module.exports = { cancelBooking };
+
+module.exports = { createBooking, getBookings, getBooking, cancelBooking };

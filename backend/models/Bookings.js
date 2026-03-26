@@ -4,7 +4,7 @@ const bookingSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "userModel",
       required: true,
     },
 
@@ -36,7 +36,7 @@ const bookingSchema = new mongoose.Schema(
       default: "confirmed",
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // 🔥 Index for faster conflict queries
