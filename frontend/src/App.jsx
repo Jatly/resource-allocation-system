@@ -1,7 +1,43 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Ct from "./components/ct";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Login from "./components/Login";
+import { useState } from "react";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
+import "./App.css";
+import Booking from "./components/Booking";
+import Addresource from "./components/Addresource";
+import Editresource from "./components/Editresource";
+import Editbooking from "./components/Editbooking";
+import Resetpassword from "./components/Resetpassword";
+import Logout from "./components/Logout";
 const App = () => {
+  let [state, setState] = useState({ token: "", role: "", name: "", uid: "" });
+  let updstate = (data) => {
+    setState({ ...state, ...data });
+  };
+  let obj = { state: state, updstate: updstate };
   return (
-    <div>App</div>
-  )
-}
+    <BrowserRouter>
+      <Ct.Provider value={obj}>
+        <Navbar />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/logout" element={<Logout/>}/>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/booknow" element={<Booking />} />
+          <Route path="/addresource" element={<Addresource />} />
+          <Route path="/editresources" element={<Editresource />} />
+          <Route path="/editbooking" element={<Editbooking />} />
+          <Route path="/resetpassword" element={<Resetpassword />} />
+        </Routes>
+        <Footer />
+      </Ct.Provider>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;

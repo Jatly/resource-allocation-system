@@ -46,7 +46,7 @@ let createBooking = async (req, res) => {
       return res.json({ msg: "Resource not available" });
     }
 
-    //Conflict Check
+    //Prevent Booking Conflict Logic
 
     const conflict = await Bookings.findOne({
       resource,
@@ -55,7 +55,9 @@ let createBooking = async (req, res) => {
       endTime: { $gt: new Date(startTime) },
     });
     if (conflict) {
-      return res.json({ msg: "Time slot already booked" });
+      return res.json({ 
+        msg: "Time slot already booked" 
+      });
     }
 
     // create booking

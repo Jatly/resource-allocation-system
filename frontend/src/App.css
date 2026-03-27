@@ -1,0 +1,137 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY (optional but recommended) */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0D1117;
+}
+
+/* NAVBAR */
+nav {
+    width: 100%;
+    height: 7vh;
+    background: #0D1117;
+    color: #ffffff;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #58a6ff;
+}
+
+/* DASHBOARD */
+.dashboard {
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* FULL SCREEN REGISTER BACKGROUND */
+.register {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #0D1117, #161B22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CENTER FORM BOX */
+.register-box {
+    width: 400px;
+    padding: 30px 25px;
+    background: #0D1117;
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+/* HEADING */
+.register-box h2 {
+    margin-bottom: 10px;
+}
+
+/* INPUT FIELDS */
+.register-box input {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+/* PLACEHOLDER */
+.register-box input::placeholder {
+    color: #aaaaaa;
+}
+
+/* INPUT FOCUS */
+.register-box input:focus {
+    outline: none;
+    border: 1px solid #58a6ff;
+}
+
+/* BUTTON */
+.register-box button {
+    width: 100%;
+    height: 45px;
+    background: #ffffff;
+    color: #0D1117;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* BUTTON HOVER */
+.register-box button:hover {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+/* ERROR MESSAGE */
+.register-box p {
+    color: #ff4d4f;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* GLOBAL INPUT FIX */
+input:focus {
+    outline: none;
+}
