@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import Ct from "./ct";
+import Cookies from "js-cookie";
 const Login = () => {
   const [data, setData] = useState({
     email: "",
@@ -26,7 +27,18 @@ const Login = () => {
       .post("http://localhost:5000/login", data)
       .then((res) => {
         if (res.data.token !== undefined) {
-          obj.updState({ token: res.data.token, name: res.data.name });
+          obj.updstate({ token: res.data.token, name: res.data.name });
+
+          Cookies.set(
+            "loginDetails",
+            JSON.stringify({
+              token: res.data.token,
+              name: res.data.name,
+              role: res.data.role,
+              email: res.data.email,
+            }),
+            { expires: 3 },
+          );
           navigate("/");
         } else {
           setMsg(res.data.msg);
@@ -59,13 +71,19 @@ const Login = () => {
 
         <button onClick={log}>Login</button>
 
-        <div className="auth-link forgot-password"
-          onClick={() => navigate("/resetpassword")}>
-          Forgot your password?</div>
+        <div
+          className="auth-link forgot-password"
+          onClick={() => navigate("/resetpassword")}
+        >
+          Forgot your password?
+        </div>
 
-        <div className="auth-link signup-link"
-          onClick={() => navigate("/signup")}>
-            Don’t have an account?</div>
+        <div
+          className="auth-link signup-link"
+          onClick={() => navigate("/signup")}
+        >
+          Don’t have an account?
+        </div>
         <p>{msg}</p>
       </div>
     </div>

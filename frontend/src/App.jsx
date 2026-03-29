@@ -13,13 +13,16 @@ import Editresource from "./components/Editresource";
 import Editbooking from "./components/Editbooking";
 import Resetpassword from "./components/Resetpassword";
 import Logout from "./components/Logout";
+import Cookies from "js-cookie";
+
 const App = () => {
   let [state, setState] = useState({ token: "", role: "", name: "", uid: "" });
   let updstate = (data) => {
     setState({ ...state, ...data });
   };
-  let obj = { state: state, updstate: updstate };
-  return (
+
+let obj = { state: state, updstate: updstate };
+return (
     <BrowserRouter>
       <Ct.Provider value={obj}>
         <Navbar />

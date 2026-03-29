@@ -157,3 +157,111 @@ input:focus {
 .signup-link {
   margin-top: 6px;
 }
+/* Full screen background */
+.reset-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Card */
+.reset-card {
+  width: 360px;
+  padding: 30px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Message */
+.reset-message {
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: #444;
+  min-height: 20px;
+}
+
+/* Input */
+.reset-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* Focus effect */
+.reset-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+}
+
+/* OTP input special */
+.otp-input {
+  text-align: center;
+  letter-spacing: 6px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Button */
+.reset-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Button hover */
+.reset-btn:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+/* Button disabled state (optional future use) */
+.reset-btn:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* Timer */
+.reset-timer {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ef4444;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 400px) {
+  .reset-card {
+    width: 90%;
+    padding: 20px;
+  }
+}

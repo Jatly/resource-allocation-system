@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
+import Ct from "./ct";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Logout = () => {
-  return (
-    <div>Logout</div>
-  )
-}
+  const obj = useContext(Ct);
+  const navigate = useNavigate();
 
-export default Logout
+  useEffect(() => {
+    // clear state
+    obj.updstate({ token: "", name: "", role: "", email: "" });
+
+    // clear cookie
+    Cookies.remove("loginDetails");
+
+    // redirect
+    navigate("/login");
+  }, []);
+
+  return <div>Logging out...</div>;
+};
+
+export default Logout;
