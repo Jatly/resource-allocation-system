@@ -135,3 +135,25 @@ a:hover {
 input:focus {
     outline: none;
 }
+
+.auth-link {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* optional spacing difference */
+.forgot-password {
+  margin-top: 12px;
+}
+
+.signup-link {
+  margin-top: 6px;
+}
