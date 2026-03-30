@@ -55,8 +55,8 @@ let createBooking = async (req, res) => {
       endTime: { $gt: new Date(startTime) },
     });
     if (conflict) {
-      return res.json({ 
-        msg: "Time slot already booked" 
+      return res.json({
+        msg: "Time slot already booked",
       });
     }
 
@@ -79,16 +79,21 @@ let createBooking = async (req, res) => {
 
 let getBookings = async (req, res) => {
   try {
-    const bookings = await Bookings.find();
+    const bookings = await Bookings.find()
+      .populate("resource", "name")
+      .populate("user", "name");
     res.json(bookings);
-  } catch {
+  } catch(err){
+    console.log(err);
     res.json({ msg: "Error fetching bookings" });
   }
 };
 
 let getBooking = async (req, res) => {
   try {
-    const booking = await Bookings.findById(req.params.id);
+    const booking = await Bookings.findById(req.params.id)
+      .populate("resource", "name")
+      .populate("user", "name");
     console.log(booking);
 
     if (!booking) {

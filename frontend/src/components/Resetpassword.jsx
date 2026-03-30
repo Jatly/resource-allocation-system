@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const Resetpassword = () => {
   let [email, setEmail] = useState("")
@@ -10,6 +11,7 @@ const Resetpassword = () => {
   let [newpwd, setNewpwd] = useState("")
   let [c, setC] = useState(300)
   let [iid, setIid] = useState(null)
+  const inputs = useRef([]);
 
   const navigate = useNavigate();
 
@@ -70,15 +72,36 @@ const Resetpassword = () => {
         )}
 
         {f && (
-          <input
-            className="reset-input otp-input"
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            maxLength="6"
-          />
-        )}
+  <div className="otp-container">
+    {[...Array(6)].map((_, index) => (
+      <input
+        key={index}
+        type="text"
+        maxLength="1"
+        value={otp[index] || ""}
+        ref={(el) => (inputs.current[index] = el)}
+        onChange={(e) => {
+          const value = e.target.value;
+          if (!/^[0-9]?$/.test(value)) return;
+
+          let newOtp = otp.split("");
+          newOtp[index] = value;
+          setOtp(newOtp.join(""));
+
+          if (value && index < 5) {
+            inputs.current[index + 1].focus();
+          }
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Backspace" && !otp[index] && index > 0) {
+            inputs.current[index - 1].focus();
+          }
+        }}
+        className="otp-box"
+      />
+    ))}
+  </div>
+)}
 
         {f && (
           <input

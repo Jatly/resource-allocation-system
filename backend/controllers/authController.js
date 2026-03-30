@@ -75,7 +75,7 @@ const login = async (req, res) => {
       { expiresIn: "1d" },
     );
 
-    res.json({ msg: "Login succesful", token, name: user.name });
+    res.json({ msg: "Login succesful", token, name: user.name, role: user.role,uid: user.email });
   } catch (err) {
     res.json(err);
   }

@@ -4,6 +4,8 @@ import Ct from "./ct";
 
 const Navbar = () => {
   let obj = useContext(Ct);
+  console.log(obj);
+  
   return (
     <nav>
       <h2>Res-A</h2>
@@ -21,6 +23,7 @@ const Navbar = () => {
               <Link to="/addresource">Add Resource</Link>
             )}
             <Link to="/logout">Logout</Link>
+            <h4>{obj.state.name}</h4>
           </>
         )}
       </div>

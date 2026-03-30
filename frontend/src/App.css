@@ -1,155 +1,160 @@
+/* ============================= */
 /* RESET */
+/* ============================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* BODY (optional but recommended) */
+/* ============================= */
+/* GLOBAL */
+/* ============================= */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0D1117;
-}
-
-/* NAVBAR */
-nav {
-    width: 100%;
-    height: 7vh;
-    background: #0D1117;
-    color: #ffffff;
-    padding: 5px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.links {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0D1117;
+  color: #ffffff;
 }
 
 a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: 0.3s;
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 a:hover {
-    color: #58a6ff;
+  color: #58a6ff;
 }
 
-/* DASHBOARD */
-.dashboard {
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* FULL SCREEN REGISTER BACKGROUND */
-.register {
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, #0D1117, #161B22);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* CENTER FORM BOX */
-.register-box {
-    width: 400px;
-    padding: 30px 25px;
-    background: #0D1117;
-    color: #ffffff;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
-}
-
-/* HEADING */
-.register-box h2 {
-    margin-bottom: 10px;
-}
-
-/* INPUT FIELDS */
-.register-box input {
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-    font-size: 16px;
-
-    background: transparent;
-    border: 1px solid #ffffff;
-    color: #ffffff;
-
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-/* PLACEHOLDER */
-.register-box input::placeholder {
-    color: #aaaaaa;
-}
-
-/* INPUT FOCUS */
-.register-box input:focus {
-    outline: none;
-    border: 1px solid #58a6ff;
-}
-
-/* BUTTON */
-.register-box button {
-    width: 100%;
-    height: 45px;
-    background: #ffffff;
-    color: #0D1117;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-}
-
-/* BUTTON HOVER */
-.register-box button:hover {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-}
-
-/* ERROR MESSAGE */
-.register-box p {
-    color: #ff4d4f;
-    font-size: 14px;
-    text-align: center;
-}
-
-/* GLOBAL INPUT FIX */
 input:focus {
-    outline: none;
+  outline: none;
 }
 
-.auth-link {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #007bff;
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+nav {
+  width: 100%;
+  height: 7vh;
+  background: #0D1117;
+  padding: 5px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ============================= */
+/* DASHBOARD */
+/* ============================= */
+.dashboard {
+  padding: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ============================= */
+/* AUTH (LOGIN / REGISTER) */
+/* ============================= */
+.register {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #0D1117, #161B22);
+}
+
+.register-box {
+  width: 400px;
+  padding: 30px 25px;
+
+  background: #0D1117;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.register-box h2 {
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+.register-box input {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+
+  color: #ffffff;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.register-box input::placeholder {
+  color: #aaaaaa;
+}
+
+.register-box input:focus {
+  border-color: #58a6ff;
+}
+
+/* Button */
+.register-box button {
+  width: 100%;
+  height: 45px;
+
+  background: #ffffff;
+  color: #0D1117;
+
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  transition: 0.3s;
+}
+
+.register-box button:hover {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+/* Error */
+.register-box p {
+  color: #ff4d4f;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Links */
+.auth-link {
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .auth-link:hover {
   text-decoration: underline;
-  color: #0056b3;
 }
 
-/* optional spacing difference */
 .forgot-password {
   margin-top: 12px;
 }
@@ -157,111 +162,182 @@ input:focus {
 .signup-link {
   margin-top: 6px;
 }
-/* Full screen background */
+
+/* ============================= */
+/* RESET PASSWORD */
+/* ============================= */
 .reset-container {
-  height: 100vh;
+  min-height: 100vh;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  font-family: 'Segoe UI', sans-serif;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #0D1117, #161B22);
 }
 
-/* Card */
 .reset-card {
-  width: 360px;
-  padding: 30px;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 25px;
+
+  background: #0D1117;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+
   text-align: center;
-  animation: fadeIn 0.4s ease-in-out;
 }
 
-/* Message */
-.reset-message {
-  font-size: 15px;
-  margin-bottom: 15px;
-  color: #444;
-  min-height: 20px;
-}
-
-/* Input */
+/* Inputs */
 .reset-input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  outline: none;
+  height: 45px;
+  padding: 10px;
+  margin: 8px 0;
+
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+
+  color: #ffffff;
   transition: 0.3s;
 }
 
-/* Focus effect */
-.reset-input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+.reset-input::placeholder {
+  color: #aaaaaa;
 }
 
-/* OTP input special */
-.otp-input {
+.reset-input:focus {
+  border-color: #58a6ff;
+}
+
+/* OTP */
+.otp-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.otp-box {
+  width: 45px;
+  height: 50px;
+
+  border-radius: 6px;
+  border: 1px solid #ffffff;
+  background: transparent;
+
+  color: #ffffff;
+  font-size: 18px;
   text-align: center;
-  letter-spacing: 6px;
-  font-size: 20px;
-  font-weight: bold;
+}
+
+.otp-box:focus {
+  border-color: #58a6ff;
 }
 
 /* Button */
 .reset-btn {
   width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  border-radius: 10px;
+  height: 45px;
+  margin-top: 10px;
+
+  background: #ffffff;
+  color: #0D1117;
+
   border: none;
-  background: #6366f1;
-  color: white;
-  font-weight: 600;
+  border-radius: 6px;
   cursor: pointer;
+
   transition: 0.3s;
 }
 
-/* Button hover */
 .reset-btn:hover {
-  background: #4f46e5;
-  transform: translateY(-1px);
-}
-
-/* Button disabled state (optional future use) */
-.reset-btn:disabled {
-  background: #a5b4fc;
-  cursor: not-allowed;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
 }
 
 /* Timer */
 .reset-timer {
   margin-top: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #ef4444;
+  color: #ff4d4f;
+  font-weight: 600;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ============================= */
+/* BOOKINGS */
+/* ============================= */
+.booking-container {
+  padding: 20px;
 }
 
-/* Mobile responsive */
-@media (max-width: 400px) {
+.booking-container h2 {
+  margin-bottom: 15px;
+}
+
+/* Table */
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  background: #161B22;
+  border-radius: 10px;
+  overflow: hidden;
+
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Header */
+.booking-table thead {
+  background: #21262d;
+}
+
+.booking-table th,
+.booking-table td {
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* Rows */
+.booking-table tbody tr {
+  border-bottom: 1px solid #30363d;
+  transition: 0.2s;
+}
+
+.booking-table tbody tr:hover {
+  background: #0D1117;
+}
+
+/* Status */
+.status {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.confirmed {
+  background: rgba(46, 160, 67, 0.15);
+  color: #3fb950;
+}
+
+.status.cancelled {
+  background: rgba(248, 81, 73, 0.15);
+  color: #f85149;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+@media (max-width: 420px) {
+  .register-box,
   .reset-card {
     width: 90%;
     padding: 20px;
+  }
+
+  .otp-box {
+    width: 40px;
+    height: 45px;
   }
 }
