@@ -10,7 +10,7 @@ const resourceSchema = new mongoose.Schema(
 
     type: {
       type: String,
-      enum: ["meeting_room", "conference_hall"],
+      enum: ["meeting_room", "conference_hall", "training_room", "private_room"],
       required: true,
     },
 

@@ -18,7 +18,7 @@ rt.delete("/deleteresource/:id",deleteResource)
 rt.get("/getresourcename/:id",getresourcename)
 
 
-rt.post("/createbooking",createBooking)
+rt.post("/createbooking/:id",createBooking)
 rt.get("/getbookings",getBookings)
 rt.get("/getbooking/:id",getBooking)
 rt.put("/cancelbooking/:id",cancelBooking)

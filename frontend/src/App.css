@@ -17,13 +17,13 @@ body {
 }
 
 a {
-  color: #ffffff;
+  color: #e6edf3;
   text-decoration: none;
   transition: 0.3s;
 }
 
 a:hover {
-  color: #58a6ff;
+  color: #010409;
 }
 
 input:focus {
@@ -36,9 +36,9 @@ input:focus {
 nav {
   width: 100%;
   height: 7vh;
-  background: #0D1117;
+  background: #238636;
   padding: 5px 20px;
-
+  color:#e6edf3;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,16 +50,7 @@ nav {
   gap: 15px;
 }
 
-/* ============================= */
-/* DASHBOARD */
-/* ============================= */
-.dashboard {
-  padding: 25px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 /* ============================= */
 /* AUTH (LOGIN / REGISTER) */
@@ -340,4 +331,408 @@ nav {
     width: 40px;
     height: 45px;
   }
+}
+
+/* ============================= */
+/* RESOURCE GRID */
+/* ============================= */
+.resource-container {
+  padding: 20px;
+}
+
+.resource-empty {
+  text-align: center;
+  color: #8b949e;
+  font-size: 14px;
+}
+
+/* Grid */
+.resource-list {
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+.resource-card {
+  width: 40%;
+  background: #161B22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.resource-card:hover {
+  border-color: #58a6ff;
+  transform: translateY(-4px);
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+.resource-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resource-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+/* ============================= */
+/* DETAILS */
+/* ============================= */
+.resource-details {
+  font-size: 13px;
+  color: #9da7b3;
+  line-height: 1.6;
+}
+
+/* ============================= */
+/* STATUS BADGE */
+/* ============================= */
+.resource-status {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.resource-status.available {
+  background: rgba(46, 160, 67, 0.15);
+  color: #3fb950;
+}
+
+.resource-status.maintenance {
+  background: rgba(248, 81, 73, 0.15);
+  color: #f85149;
+}
+
+/* ============================= */
+/* ACTIONS */
+/* ============================= */
+.resource-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+}
+
+/* Base button */
+.resource-actions button {
+  flex: 1;
+  height: 36px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Primary */
+.book-btn {
+  background: #238636;
+  color: #ffffff;
+  border: none;
+}
+
+.book-btn:hover {
+  background: #2ea043;
+}
+
+/* Secondary */
+.edit-btn {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+}
+
+.edit-btn:hover {
+  border-color: #58a6ff;
+  color: #58a6ff;
+}
+.dlt-btn {
+  background: transparent;
+  border: 1px solid #f85149;
+  color: #f85149;
+}
+.dlt-btn:hover {
+  background: #f85149;
+  color: #ffffff;
+}
+
+/* Disabled (important UX) */
+.book-btn:disabled {
+  background: #30363d;
+  color: #8b949e;
+  cursor: not-allowed;
+}
+/* ============================= */
+/* DASHBOARD LAYOUT */
+/* ============================= */
+.dashboard {
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two sections */
+  gap: 20px;
+}
+
+/* Section card (wrapper for components) */
+.dashboard-section {
+  background: #161B22;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Section title */
+.dashboard-section h2 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #58a6ff;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+@media (max-width: 900px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+/* ============================= */
+/* WRAPPER */
+/* ============================= */
+.booking-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #0d1117, #010409);
+}
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+.booking-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 26px;
+
+  background: #161B22;
+  border: 1px solid #30363d;
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  box-shadow: 
+    0 0 0 1px rgba(255,255,255,0.02),
+    0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* ============================= */
+/* TITLE */
+/* ============================= */
+.booking-card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #58a6ff;
+  margin-bottom: 8px;
+}
+
+/* ============================= */
+/* INPUT GROUP */
+/* ============================= */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label */
+.input-group label {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+/* Input */
+.booking-card input {
+  height: 44px;
+  padding: 10px 12px;
+
+  border-radius: 8px;
+  border: 1px solid #30363d;
+
+  background: #0D1117;
+  color: #ffffff;
+
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+/* Focus */
+.booking-card input:focus {
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 2px rgba(88,166,255,0.2);
+}
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+.booking-card button {
+  margin-top: 10px;
+  height: 46px;
+
+  background: linear-gradient(135deg, #238636, #2ea043);
+  color: #ffffff;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.booking-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(46,160,67,0.3);
+}
+
+/* Active */
+.booking-card button:active {
+  transform: scale(0.97);
+}
+
+/* Input group */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Labels */
+.input-group label {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+/* Message */
+.booking-msg {
+  text-align: center;
+  font-size: 13px;
+  color: #58a6ff;
+  margin-bottom: 5px;
+}
+.booking-card input {
+  color-scheme: dark;
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+.footer {
+  background: #0D1117;
+  border-top: 1px solid #30363d;
+  margin-top: 40px;
+}
+
+/* Container */
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 18px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left */
+.footer-left h3 {
+  font-size: 18px;
+  color: #58a6ff;
+  margin-bottom: 4px;
+}
+
+.footer-left p {
+  font-size: 13px;
+  color: #8b949e;
+}
+
+/* Right */
+.footer-right {
+  text-align: right;
+}
+
+.footer-right p {
+  font-size: 13px;
+  color: #8b949e;
+  line-height: 1.5;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .footer-right {
+    text-align: center;
+  }
+}
+/* Cancel button */
+.cancel-btn {
+  margin-top: 12px;
+  height: 36px;
+
+  background: rgba(248, 81, 73, 0.15);
+  color: #f85149;
+
+  border: 1px solid #f85149;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.cancel-btn:hover {
+  background: #f85149;
+  color: #ffffff;
+}
+
+/* Active */
+.cancel-btn:active {
+  transform: scale(0.97);
 }

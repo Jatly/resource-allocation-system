@@ -1,17 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Ct from "./ct";
 
 const Bookingstoday = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  let obj=useContext(Ct)
   // ✅ Fetch bookings
   useEffect(() => {
     axios
       .get("http://localhost:5000/getbookings")
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -22,16 +22,14 @@ const Bookingstoday = () => {
 
   const today = new Date().toDateString();
 
-const filteredData = data.filter(
-  (item) => new Date(item.startTime).toDateString() === today
-);
+  const filteredData = data.filter(
+    (item) => new Date(item.startTime).toDateString() === today,
+  );
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <div className="booking-container">
-      <h2>Today's Bookings</h2>
-
       {filteredData.length === 0 ? (
         <p>No bookings today</p>
       ) : (
@@ -82,6 +80,18 @@ const filteredData = data.filter(
 
                 <td>
                   <span className={`status ${item.status}`}>{item.status}</span>
+                  {obj.state.role==="admin" && item.status === "confirmed" && (
+              <button className="cancel-btn" onClick={()=>{
+                axios.put("http://localhost:5000/cancelbooking/"+item._id).then((res)=>{
+                  alert(res.data.msg)
+                  window.location.reload()
+                }).catch((err)=>{
+                  alert(err.response?.data?.msg || "Error")
+                })
+              }}>
+                Cancel Booking
+              </button>
+            )}
                 </td>
               </tr>
             ))}

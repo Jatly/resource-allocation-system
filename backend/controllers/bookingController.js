@@ -22,58 +22,68 @@ const sendEmail = async (to, subject, text) => {
 
 module.exports = sendEmail;
 
-let createBooking = async (req, res) => {
+const createBooking = async (req, res) => {
   try {
-    const { resource, startTime, endTime, purpose, user } = req.body;
+    const { startTime, endTime, purpose, user } = req.body;
+    const resourceId = req.params.id;
 
-    // Validate input
-    if (!resource || !startTime || !endTime) {
-      return res.json({ msg: "Missing required feilds" });
+    // =============================
+    // VALIDATION
+    // =============================
+    if (!resourceId || !startTime || !endTime || !user) {
+      return res.status(400).json({ msg: "Missing required fields" });
     }
-    // Validate Time
+
     if (new Date(startTime) >= new Date(endTime)) {
-      return res.json({ msg: "Invalid time range" });
+      return res.status(400).json({ msg: "Invalid time range" });
     }
 
-    // check resource exist
-    const resourceExists = await Resources.findById(resource);
-    if (!resourceExists) {
-      return res.json({ msg: "Resource not found" });
+    // =============================
+    // CHECK RESOURCE
+    // =============================
+    const resource = await Resources.findById(resourceId);
+    if (!resource) {
+      return res.status(404).json({ msg: "Resource not found" });
     }
 
-    // Checking availability
-    if (resourceExists.status !== "available") {
-      return res.json({ msg: "Resource not available" });
+    if (resource.status !== "available") {
+      return res.status(400).json({ msg: "Resource not available" });
     }
 
-    //Prevent Booking Conflict Logic
-
+    // =============================
+    // CONFLICT CHECK
+    // =============================
     const conflict = await Bookings.findOne({
-      resource,
+      resource: resourceId,
       status: "confirmed",
       startTime: { $lt: new Date(endTime) },
       endTime: { $gt: new Date(startTime) },
     });
+
     if (conflict) {
-      return res.json({
-        msg: "Time slot already booked",
-      });
+      return res.status(409).json({ msg: "Time slot already booked" });
     }
 
-    // create booking
-
+    // =============================
+    // CREATE BOOKING
+    // =============================
     const booking = await Bookings.create({
-      resource,
+      resource: resourceId,
       startTime,
       endTime,
       purpose,
-      user,
+      user, // ✅ from frontend
+      status: "confirmed",
     });
-    return res.json({ msg: "Booking created succesfully" });
+
+    return res.status(201).json({
+      msg: "Booking created successfully",
+      booking,
+    });
+
   } catch (err) {
     console.log(err);
-
-    return res.json({ msg: "Error in creating booking" });
+    return res.status(500).json({ msg: "Error in creating booking" });
   }
 };
 

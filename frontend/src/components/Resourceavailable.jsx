@@ -1,8 +1,68 @@
-import React from 'react'
-
+import axios from "axios"
+import { useContext, useEffect, useState } from "react"
+import Ct from "./ct"
+import { useNavigate } from "react-router-dom"
 const Resourceavailable = () => {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios.get("http://localhost:5000/getresources").then((res)=>{
+      setData(res.data)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+    const navigate = useNavigate()
+
+  let obj=useContext(Ct)
   return (
-    <div>Resourceavailable</div>
+    <div className="resource-container">
+  {data.length === 0 ? (
+    <p className="resource-empty">No resources available</p>
+  ) : (
+    <div className="resource-list">
+      {data.map((resource) => (
+        <div className="resource-card" key={resource._id}>
+          <h3>{resource.name}</h3>
+          <p>Capacity: {resource.capacity}</p>
+          <p>
+            Location: {resource.location.floor} floor,{" "}
+            {resource.location.roomNumber}
+          </p>
+          <p>Type: {resource.type}</p>
+
+          <span className={`resource-status ${resource.status}`}>
+            {resource.status}
+          </span>
+
+          <div className="resource-actions">
+            {resource.status === "available" && (
+              <button className="book-btn" onClick={() => navigate(`/booknow/${resource._id}`)}>
+                Book Now
+              </button>
+            )}
+            {obj.state.role==="admin" && (
+              <button className="edit-btn" onClick={() => navigate(`/editresource/${resource._id}`)}>
+                Edit
+              </button>
+            )}
+            {obj.state.role==="admin" && (
+              <button className="dlt-btn" onClick={()=>{
+                axios.delete("http://localhost:5000/deleteresource/"+resource._id).then((res)=>{
+                  alert(res.data.msg)
+                  window.location.reload()
+                }).catch((err)=>{
+                  alert(err.response?.data?.msg || "Error")
+                })
+              }}>
+                Delete
+              </button>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
   )
 }
 

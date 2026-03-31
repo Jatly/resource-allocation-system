@@ -3,7 +3,7 @@ import Ct from "./components/ct";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
@@ -21,6 +21,13 @@ const App = () => {
     setState({ ...state, ...data });
   };
 
+  useEffect(() => {
+    const cookieData = Cookies.get("loginDetails");
+    if (cookieData) {
+      updstate(JSON.parse(cookieData));
+    }
+  }, []);
+
 let obj = { state: state, updstate: updstate };
 return (
     <BrowserRouter>
@@ -31,7 +38,7 @@ return (
           <Route path="/signup" element={<Register />} />
           <Route path="/logout" element={<Logout/>}/>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/booknow" element={<Booking />} />
+          <Route path="/booknow/:id" element={<Booking />} />
           <Route path="/addresource" element={<Addresource />} />
           <Route path="/editresources" element={<Editresource />} />
           <Route path="/editbooking" element={<Editbooking />} />

@@ -27,15 +27,21 @@ const Login = () => {
       .post("http://localhost:5000/login", data)
       .then((res) => {
         if (res.data.token !== undefined) {
-          obj.updstate({ token: res.data.token, name: res.data.name, role:res.data.role, uid:res.data.uid });
-          console.log(res.data)
+          obj.updstate({
+            token: res.data.token,
+            name: res.data.name,
+            role: res.data.role,
+            uid: res.data.uid,
+          });
+          console.log(res.data._id);
+          console.log(obj.state);
           Cookies.set(
             "loginDetails",
             JSON.stringify({
               token: res.data.token,
               name: res.data.name,
               role: res.data.role,
-              email: res.data.email,
+              uid: res.data.uid,
             }),
             { expires: 3 },
           );
