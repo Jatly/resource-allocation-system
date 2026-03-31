@@ -7,13 +7,13 @@ const Footer = () => {
         
         {/* Left */}
         <div className="footer-left">
-          <h3>Res-A</h3>
+          <h3>WorkHive</h3>
           <p>Smart Resource Booking System</p>
         </div>
 
         {/* Right */}
         <div className="footer-right">
-          <p>© 2026 Res-A</p>
+          <p>© 2026 WorkHive</p>
           <p>All rights reserved</p>
         </div>
 

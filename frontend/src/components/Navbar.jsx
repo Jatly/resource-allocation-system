@@ -8,7 +8,7 @@ const Navbar = () => {
   
   return (
     <nav>
-      <h2>Res-A</h2>
+      <h2>WorkHive</h2>
 
       <div className="links">
         {obj.state.token == "" ? (
