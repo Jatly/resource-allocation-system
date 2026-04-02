@@ -5,7 +5,7 @@ import Ct from "./ct";
 const Navbar = () => {
   let obj = useContext(Ct);
   console.log(obj);
-  
+
   return (
     <nav>
       <h2>WorkHive</h2>
@@ -22,6 +22,7 @@ const Navbar = () => {
             {obj.state.role === "admin" && (
               <Link to="/addresource">Add Resource</Link>
             )}
+            <Link to="/history">History</Link>
             <Link to="/logout">Logout</Link>
             <h4>{obj.state.name}</h4>
           </>

@@ -6,7 +6,7 @@ const Bookingstoday = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   let obj=useContext(Ct)
-  // ✅ Fetch bookings
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/getbookings")

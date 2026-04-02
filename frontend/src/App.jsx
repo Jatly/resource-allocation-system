@@ -14,6 +14,7 @@ import Editbooking from "./components/Editbooking";
 import Resetpassword from "./components/Resetpassword";
 import Logout from "./components/Logout";
 import Cookies from "js-cookie";
+import BookingHistory from "./components/BookingHistory";
 
 const App = () => {
   let [state, setState] = useState({ token: "", role: "", name: "", uid: "" });
@@ -28,21 +29,22 @@ const App = () => {
     }
   }, []);
 
-let obj = { state: state, updstate: updstate };
-return (
+  let obj = { state: state, updstate: updstate };
+  return (
     <BrowserRouter>
       <Ct.Provider value={obj}>
         <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/logout" element={<Logout/>}/>
+          <Route path="/logout" element={<Logout />} />
           <Route path="/" element={<Dashboard />} />
           <Route path="/booknow/:id" element={<Booking />} />
           <Route path="/addresource" element={<Addresource />} />
-          <Route path="/editresources" element={<Editresource />} />
+          <Route path="/editresources/:id" element={<Editresource />} />{" "}
           <Route path="/editbooking" element={<Editbooking />} />
           <Route path="/resetpassword" element={<Resetpassword />} />
+          <Route path="/history" element={<BookingHistory />} />
         </Routes>
         <Footer />
       </Ct.Provider>

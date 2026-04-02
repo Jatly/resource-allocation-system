@@ -27,15 +27,58 @@ const createBooking = async (req, res) => {
     const { startTime, endTime, purpose, user } = req.body;
     const resourceId = req.params.id;
 
-    // =============================
-    // VALIDATION
-    // =============================
     if (!resourceId || !startTime || !endTime || !user) {
-      return res.status(400).json({ msg: "Missing required fields" });
+      return res.status(400).json({ msg: "Required fields are missing." });
     }
 
-    if (new Date(startTime) >= new Date(endTime)) {
-      return res.status(400).json({ msg: "Invalid time range" });
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+    const now = new Date();
+
+    // =============================
+    // BUFFER VALIDATION (15 mins)
+    // =============================
+    const bufferMinutes = 15;
+    const minStartTime = new Date(now.getTime() + bufferMinutes * 60000);
+
+    if (start <= minStartTime) {
+      return res.status(400).json({
+        msg: "Bookings must be made at least 15 minutes in advance.",
+      });
+    }
+
+    const maxDaysAhead = 7;
+
+    // Max allowed start time (now + 7 days)
+    const maxStartTime = new Date(
+      now.getTime() + maxDaysAhead * 24 * 60 * 60000,
+    );
+
+    if (start > maxStartTime) {
+      return res.status(400).json({
+        msg: "Bookings can only be made up to 7 days in advance.",
+      });
+    }
+
+    // =============================
+    // TIME RANGE VALIDATION
+    // =============================
+    if (start >= end) {
+      return res.status(400).json({
+        msg: "End time must be later than the start time.",
+      });
+    }
+
+    // =============================
+    // MINIMUM DURATION (30 mins)
+    // =============================
+    const minDuration = 30; // minutes
+    const duration = (end - start) / 60000;
+
+    if (duration < minDuration) {
+      return res.status(400).json({
+        msg: "Minimum booking duration is 30 minutes.",
+      });
     }
 
     // =============================
@@ -43,25 +86,45 @@ const createBooking = async (req, res) => {
     // =============================
     const resource = await Resources.findById(resourceId);
     if (!resource) {
-      return res.status(404).json({ msg: "Resource not found" });
+      return res.status(404).json({ msg: "Resource not found." });
     }
 
     if (resource.status !== "available") {
-      return res.status(400).json({ msg: "Resource not available" });
+      return res.status(400).json({
+        msg: "The selected resource is currently unavailable.",
+      });
     }
 
     // =============================
-    // CONFLICT CHECK
+    // RESOURCE CONFLICT CHECK
     // =============================
     const conflict = await Bookings.findOne({
       resource: resourceId,
       status: "confirmed",
-      startTime: { $lt: new Date(endTime) },
-      endTime: { $gt: new Date(startTime) },
+      startTime: { $lt: end },
+      endTime: { $gt: start },
     });
 
     if (conflict) {
-      return res.status(409).json({ msg: "Time slot already booked" });
+      return res.status(409).json({
+        msg: "The selected time slot is already booked.",
+      });
+    }
+
+    // =============================
+    // USER DOUBLE BOOKING CHECK
+    // =============================
+    const userConflict = await Bookings.findOne({
+      user: user,
+      status: "confirmed",
+      startTime: { $lt: end },
+      endTime: { $gt: start },
+    });
+
+    if (userConflict) {
+      return res.status(409).json({
+        msg: "You already have a booking during this time.",
+      });
     }
 
     // =============================
@@ -69,21 +132,22 @@ const createBooking = async (req, res) => {
     // =============================
     const booking = await Bookings.create({
       resource: resourceId,
-      startTime,
-      endTime,
+      startTime: start,
+      endTime: end,
       purpose,
-      user, // ✅ from frontend
+      user,
       status: "confirmed",
     });
 
     return res.status(201).json({
-      msg: "Booking created successfully",
+      msg: "Booking created successfully.",
       booking,
     });
-
   } catch (err) {
-    console.log(err);
-    return res.status(500).json({ msg: "Error in creating booking" });
+    console.error(err);
+    return res.status(500).json({
+      msg: "An error occurred while creating the booking.",
+    });
   }
 };
 
@@ -93,7 +157,7 @@ let getBookings = async (req, res) => {
       .populate("resource", "name")
       .populate("user", "name");
     res.json(bookings);
-  } catch(err){
+  } catch (err) {
     console.log(err);
     res.json({ msg: "Error fetching bookings" });
   }
