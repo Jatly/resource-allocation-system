@@ -41,7 +41,6 @@ const App = () => {
           <Route path="/booknow/:id" element={<Booking />} />
           <Route path="/addresource" element={<Addresource />} />
           <Route path="/editresources/:id" element={<Editresource />} />{" "}
-          <Route path="/editbooking" element={<Editbooking />} />
           <Route path="/resetpassword" element={<Resetpassword />} />
           <Route path="/history" element={<BookingHistory />} />
         </Routes>
