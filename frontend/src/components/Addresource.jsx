@@ -120,15 +120,6 @@ const Addresource = () => {
     value={data.amenities}
     onChange={handleChange} />
 
-  <label>Working Hours Start</label>
-  <input type="time" name="start"
-    value={data.workingHours.start}
-    onChange={(e) => handleNestedChange(e, "workingHours")} />
-
-  <label>Working Hours End</label>
-  <input type="time" name="end"
-    value={data.workingHours.end}
-    onChange={(e) => handleNestedChange(e, "workingHours")} />
 
   <label>Description</label>
   <textarea name="description"
