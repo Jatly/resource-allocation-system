@@ -45,7 +45,7 @@ const BookingHistory = () => {
             <td>{item.resource?.name}</td>
 
             <td>{item.purpose}</td>
-            <td>{new Date(item.startTime).toLocaleDateString()}</td>
+            <td>{new Date(item.startTime).toLocaleDateString("en-GB")}</td>
 
             <td>
               {new Date(item.startTime).toLocaleTimeString([], {
