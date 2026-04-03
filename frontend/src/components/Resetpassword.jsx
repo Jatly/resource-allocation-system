@@ -23,7 +23,7 @@ const Resetpassword = () => {
   }, [iid])
 
   let sendotp = () => {
-    axios.get(`http://localhost:5000/sendotp/${email}`)
+    axios.get(`https://resource-allocation-system.onrender.com/sendotp/${email}`)
       .then(res => {
         SetMsg(res.data.msg)
 
@@ -123,7 +123,7 @@ const Resetpassword = () => {
           <button
             className="reset-btn"
             onClick={() => {
-              axios.post("http://localhost:5000/reset", {
+              axios.post("https://resource-allocation-system.onrender.com/reset", {
                 email,
                 otp,
                 password: newpwd

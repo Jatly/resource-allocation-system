@@ -14,16 +14,16 @@ const Editresource = () => {
     amenities: "",
     workingHours: { start: "09:00", end: "18:00" },
     description: "",
+    status: "available", // ✅ added
   });
 
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/getresource/${id}`)
+      .get(`https://resource-allocation-system.onrender.com/getresource/${id}`)
       .then((res) => {
         const r = res.data.resource;
-        console.log("API DATA:", res.data); // 👈 ADD THIS
 
         setData({
           name: r.name || "",
@@ -33,6 +33,7 @@ const Editresource = () => {
           amenities: r.amenities?.join(", ") || "",
           workingHours: r.workingHours || { start: "09:00", end: "18:00" },
           description: r.description || "",
+          status: r.status || "available", // ✅ added
         });
       })
       .catch(() => {
@@ -62,7 +63,8 @@ const Editresource = () => {
       !data.type ||
       !data.capacity ||
       !data.location.floor ||
-      !data.location.roomNumber
+      !data.location.roomNumber ||
+      !data.status
     ) {
       return setMsg("Please fill all required fields.");
     }
@@ -77,8 +79,8 @@ const Editresource = () => {
       };
 
       const res = await axios.put(
-        `http://localhost:5000/updateresources/${id}`,
-        formattedData,
+        `https://resource-allocation-system.onrender.com/updateresources/${id}`,
+        formattedData
       );
 
       setMsg(res.data.msg || "Resource updated successfully.");
@@ -143,6 +145,34 @@ const Editresource = () => {
         value={data.description}
         onChange={handleChange}
       />
+
+      {/* ✅ STATUS RADIO BUTTONS */}
+      <label>Status *</label>
+      <div className="radio-group">
+        <label>
+          <input
+            type="radio"
+            name="status"
+            value="available"
+            checked={data.status === "available"}
+            onChange={handleChange}
+          />
+          Available
+        </label>
+
+    
+
+        <label>
+          <input
+            type="radio"
+            name="status"
+            value="maintenance"
+            checked={data.status === "maintenance"}
+            onChange={handleChange}
+          />
+          Maintenance
+        </label>
+      </div>
 
       <button onClick={handleUpdate}>Update Resource</button>
     </div>

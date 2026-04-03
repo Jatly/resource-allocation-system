@@ -6,7 +6,7 @@ const Resourceavailable = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/getresources")
+      .get("https://resource-allocation-system.onrender.com/getresources")
       .then((res) => {
         setData(res.data);
       })
@@ -60,7 +60,7 @@ const Resourceavailable = () => {
                     onClick={() => {
                       axios
                         .delete(
-                          "http://localhost:5000/deleteresource/" +
+                          "https://resource-allocation-system.onrender.com/deleteresource/" +
                             resource._id,
                         )
                         .then((res) => {

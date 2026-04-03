@@ -25,7 +25,7 @@ const Register = () => {
     setMsg("");
 
     axios
-      .post("http://localhost:5000/signup", data)
+      .post("https://resource-allocation-system.onrender.com/signup", data)
       .then((res) => {
         if (res.data.msg === "Account created") {
           navigate("/login");

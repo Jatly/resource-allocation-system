@@ -26,7 +26,7 @@ const Booking = () => {
 
   try {
     const res = await axios.post(
-      `http://localhost:5000/createbooking/${id}`,
+      `https://resource-allocation-system.onrender.com/createbooking/${id}`,
       {
         ...data,
         user: obj.state.uid, // ✅ send userId

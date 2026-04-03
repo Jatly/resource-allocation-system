@@ -60,7 +60,7 @@ const Addresource = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:5000/addresource",
+        "https://resource-allocation-system.onrender.com/addresource",
         formattedData,
       );
 

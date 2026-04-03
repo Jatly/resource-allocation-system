@@ -24,7 +24,7 @@ const Login = () => {
     }
     setMsg("");
     axios
-      .post("http://localhost:5000/login", data)
+      .post("https://resource-allocation-system.onrender.com/login", data)
       .then((res) => {
         if (res.data.token !== undefined) {
           obj.updstate({

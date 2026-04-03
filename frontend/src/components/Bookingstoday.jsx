@@ -9,7 +9,7 @@ const Bookingstoday = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/getbookings")
+      .get("https://resource-allocation-system.onrender.com/getbookings")
       .then((res) => {
         setData(res.data);
         setLoading(false);
@@ -82,7 +82,7 @@ const Bookingstoday = () => {
                   <span className={`status ${item.status}`}>{item.status}</span>
                   {obj.state.role==="admin" && item.status === "confirmed" && (
               <button className="cancel-btn" onClick={()=>{
-                axios.put("http://localhost:5000/cancelbooking/"+item._id).then((res)=>{
+                axios.put("https://resource-allocation-system.onrender.com/cancelbooking/"+item._id).then((res)=>{
                   alert(res.data.msg)
                   window.location.reload()
                 }).catch((err)=>{
