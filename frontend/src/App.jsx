@@ -10,7 +10,6 @@ import "./App.css";
 import Booking from "./components/Booking";
 import Addresource from "./components/Addresource";
 import Editresource from "./components/Editresource";
-import Editbooking from "./components/Editbooking";
 import Resetpassword from "./components/Resetpassword";
 import Logout from "./components/Logout";
 import Cookies from "js-cookie";
