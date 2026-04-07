@@ -64,7 +64,7 @@ const Bookingstoday = () => {
 
                 <td>
                   {new Date(item.startTime).toLocaleString("en-IN", {
-                    hour: "numeric",
+                    hour: "2-digit",
                     minute: "2-digit",
                     hour12: true,
                   })}
@@ -72,7 +72,7 @@ const Bookingstoday = () => {
 
                 <td>
                   {new Date(item.endTime).toLocaleString("en-IN", {
-                    hour: "numeric",
+                    hour: "2-digit",
                     minute: "2-digit",
                     hour12: true,
                   })}
