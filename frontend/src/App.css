@@ -936,3 +936,112 @@ nav {
   gap: 6px;
   cursor: pointer;
 }
+@media (max-width: 500px) {
+
+  /* NAVBAR */
+  nav {
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  /* SECTION SPACING */
+  .booking-container,
+  .resource-container {
+    padding: 10px;
+  }
+
+  /* TITLES */
+  h2 {
+    font-size: 16px;
+  }
+
+  /* TABLE */
+  .booking-table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .booking-table thead,
+  .booking-table tbody,
+  .booking-table tr {
+    display: table;
+    width: max-content;
+  }
+
+  .booking-table th,
+  .booking-table td {
+    padding: 8px 12px;
+    min-width: 120px;
+    text-align: left;
+  }
+
+  /* RESOURCE GRID */
+  .resource-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px;
+  }
+
+  /* CARD */
+  .resource-card {
+    padding: 14px;
+  }
+
+  .resource-title {
+    font-size: 14px;
+  }
+
+  .resource-details {
+    font-size: 12px;
+  }
+
+  /* STATUS BADGE */
+  .resource-status {
+    width: fit-content;
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  /* BUTTONS */
+  .resource-actions {
+    display: flex;
+    flex-direction: column;   /* 🔥 FIX */
+    gap: 6px;
+  }
+
+  .resource-actions button {
+    width: 100%;              /* 🔥 FIX */
+    height: 34px;
+    font-size: 12px;
+  }
+
+  /* DASHBOARD */
+  .dashboard {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .dashboard-section {
+    padding: 12px;
+  }
+
+  /* FOOTER */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+}

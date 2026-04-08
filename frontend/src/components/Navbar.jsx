@@ -4,7 +4,6 @@ import Ct from "./ct";
 
 const Navbar = () => {
   let obj = useContext(Ct);
-  console.log(obj);
 
   return (
     <nav>
