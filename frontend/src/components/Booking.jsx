@@ -33,8 +33,8 @@ const Booking = () => {
       `https://resource-allocation-system.onrender.com/createbooking/${id}`,
       {
         purpose: data.purpose,
-        startTime: startUTC,  // ✅ FIXED
-        endTime: endUTC,      // ✅ FIXED
+        startTime: startUTC,  
+        endTime: endUTC,      
         user: obj.state.uid,
       }
     );
