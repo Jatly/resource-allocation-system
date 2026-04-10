@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* ============================= */
@@ -944,6 +945,10 @@ nav {
     padding: 10px;
     text-align: center;
   }
+  
+  .history-table tr{
+      overflow-x: scroll;
+  }
 
   .links {
     flex-wrap: wrap;
@@ -982,15 +987,14 @@ nav {
   .booking-table th,
   .booking-table td {
     padding: 8px 12px;
-    min-width: 120px;
+    min-width: 190px;
     text-align: left;
   }
+ 
 
   /* RESOURCE GRID */
-  .resource-list {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px;
+  .resource-card{
+    width: 100%;
   }
 
   /* CARD */
@@ -1016,7 +1020,6 @@ nav {
   /* BUTTONS */
   .resource-actions {
     display: flex;
-    flex-direction: column;   /* 🔥 FIX */
     gap: 6px;
   }
 
