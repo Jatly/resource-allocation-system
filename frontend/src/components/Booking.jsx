@@ -25,11 +25,17 @@ const Booking = () => {
   }
 
   try {
+    // 🔥 CONVERT TO UTC BEFORE SENDING
+    const startUTC = new Date(data.startTime).toISOString();
+    const endUTC = new Date(data.endTime).toISOString();
+
     const res = await axios.post(
       `https://resource-allocation-system.onrender.com/createbooking/${id}`,
       {
-        ...data,
-        user: obj.state.uid, // ✅ send userId
+        purpose: data.purpose,
+        startTime: startUTC,  // ✅ FIXED
+        endTime: endUTC,      // ✅ FIXED
+        user: obj.state.uid,
       }
     );
 

@@ -64,6 +64,7 @@ const Bookingstoday = () => {
 
                 <td>
                   {new Date(item.startTime).toLocaleString("en-IN", {
+                    timeZone: "Asia/Kolkata",
                     hour: "numeric",
                     minute: "2-digit",
                     hour12: true,
@@ -72,6 +73,7 @@ const Bookingstoday = () => {
 
                 <td>
                   {new Date(item.endTime).toLocaleString("en-IN", {
+                    timeZone: "Asia/Kolkata",
                     hour: "numeric",
                     minute: "2-digit",
                     hour12: true,

@@ -9,7 +9,6 @@ const BookingHistory = () => {
     axios
       .get("https://resource-allocation-system.onrender.com/getbookings")
       .then((res) => {
-        console.log(res.data); // debug
         setData(res.data);
         setLoading(false);
       })
