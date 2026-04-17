@@ -11,7 +11,7 @@ const BookingHistory = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://resource-allocation-system.onrender.com/getbookings"
+          "https://resource-allocation-system.onrender.com/getbookings",
         );
         setData(res.data);
       } catch (err) {
@@ -47,10 +47,8 @@ const BookingHistory = () => {
 
   return (
     <div className="p-4 sm:p-6 flex flex-col gap-4">
-
       {/* 🔍 Controls */}
       <div className="flex flex-col sm:flex-row gap-3 justify-between">
-
         {/* Search */}
         <input
           type="text"
@@ -75,16 +73,12 @@ const BookingHistory = () => {
 
       {/* Empty state */}
       {filteredData.length === 0 ? (
-        <p className="text-center text-gray-400 text-sm">
-          No bookings found
-        </p>
+        <p className="text-center text-gray-400 text-sm">No bookings found</p>
       ) : (
         <div className="w-full overflow-x-auto rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-
           <table className="min-w-[700px] w-full bg-[#161B22] text-sm">
-
             {/* Header */}
-            <thead className="bg-[#020617] text-[#238636] uppercase text-xs tracking-wide sticky top-0">
+            <thead className="bg-[#020617] text-[#238636] uppercase text-xs tracking-wide sticky top-0 ">
               <tr>
                 <th className="p-3 text-left">User</th>
                 <th className="p-3 text-left">Resource</th>
@@ -137,8 +131,8 @@ const BookingHistory = () => {
                         item.status === "confirmed"
                           ? "bg-[#238636] text-white"
                           : item.status === "cancelled"
-                          ? "bg-[#ef4444] text-white"
-                          : "bg-yellow-400 text-black"
+                            ? "bg-[#ef4444] text-white"
+                            : "bg-yellow-400 text-black"
                       }`}
                     >
                       {item.status}
@@ -147,7 +141,6 @@ const BookingHistory = () => {
                 </tr>
               ))}
             </tbody>
-
           </table>
         </div>
       )}

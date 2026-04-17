@@ -9,7 +9,7 @@ const Navbar = () => {
   const linkStyle = "hover:text-black transition";
 
   return (
-    <nav className="w-full bg-[#238636] px-5 py-3 flex items-center justify-between text-[#e6edf3] relative">
+    <nav className="w-full bg-[#238636] px-5 py-3 flex items-center justify-between text-[#e6edf3] relative z-10">
 
       {/* Logo */}
       <h2 className="text-lg font-semibold tracking-wide">
